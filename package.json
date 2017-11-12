@@ -1,0 +1,14 @@
+{
+  "name": "",
+  "author": "Adrien Castex <adrien.castex@protonmail.com>",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "..."
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "license": "Unlicense"
+}
