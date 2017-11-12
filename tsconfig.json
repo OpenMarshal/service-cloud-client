@@ -10,6 +10,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
+    "declaration": true,
     "outDir": "dist",
     "rootDir": "src"
   },
