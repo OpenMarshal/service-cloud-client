@@ -1,7 +1,7 @@
 {
   "name": "service-cloud-client",
   "author": "Adrien Castex <adrien.castex@protonmail.com>",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/OpenMarshal/service-cloud-client.git"
