@@ -1,14 +1,28 @@
 {
-  "name": "",
+  "name": "service-cloud-client",
   "author": "Adrien Castex <adrien.castex@protonmail.com>",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "..."
+    "url": "https://github.com/OpenMarshal/service-cloud-client.git"
   },
+  "main": "./dist/exports",
+  "keywords": [
+    "service",
+    "web",
+    "cloud",
+    "client"
+  ],
+  "description": "Allows to call actions of services in the service cloud (service-cloud-service)",
+  "types": "./dist/exports.d.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "tsc"
   },
-  "license": "Unlicense"
+  "license": "Unlicense",
+  "dependencies": {
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "@types/request": "^2.0.8"
+  }
 }
