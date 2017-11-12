@@ -165,7 +165,7 @@ export class ServiceCloudClient
     public static resolve(serviceName : string, actionName : string, remote : ServiceCloudRemoteUrl, ttl : number, callback : (e : Error, final ?: ServiceCloudServicePingResponse) => void) : void
     public static resolve(serviceName : string, actionName : string, remote : ServiceCloudRemoteUrl, _ttl : number | ((e : Error, final ?: ServiceCloudServicePingResponse) => void), _callback ?: (e : Error, final ?: ServiceCloudServicePingResponse) => void) : void
     {
-        const ttl = _callback ? _ttl as number : 2;
+        const ttl = _callback ? _ttl as number : 100;
         const callback = _callback ? _callback : _ttl as (e : Error, final ?: ServiceCloudServicePingResponse) => void;
 
         if(ttl <= 0)
