@@ -51,6 +51,7 @@ export interface ServiceCloudServicePing extends ServiceCloudServiceRequest
 {
     serviceName : string
     type : 'ping'
+    ttl : number
 }
 export interface ServiceCloudServicePingResponse
 {
@@ -161,7 +162,15 @@ export class ServiceCloudClient
     }
 
     public static resolve(serviceName : string, actionName : string, remote : ServiceCloudRemoteUrl, callback : (e : Error, final ?: ServiceCloudServicePingResponse) => void) : void
+    public static resolve(serviceName : string, actionName : string, remote : ServiceCloudRemoteUrl, ttl : number, callback : (e : Error, final ?: ServiceCloudServicePingResponse) => void) : void
+    public static resolve(serviceName : string, actionName : string, remote : ServiceCloudRemoteUrl, _ttl : number | ((e : Error, final ?: ServiceCloudServicePingResponse) => void), _callback ?: (e : Error, final ?: ServiceCloudServicePingResponse) => void) : void
     {
+        const ttl = _callback ? _ttl as number : 2;
+        const callback = _callback ? _callback : _ttl as (e : Error, final ?: ServiceCloudServicePingResponse) => void;
+
+        if(ttl <= 0)
+            return callback(new Error('TTL expired'));
+
         const isSame = function(value1, value2, defaultValue) {
             return value1 === value2 || value1 === defaultValue && value2 === undefined || value1 === undefined && value2 === defaultValue;
         };
@@ -169,6 +178,7 @@ export class ServiceCloudClient
         ServiceCloudClient.request<ServiceCloudServicePing, ServiceCloudServicePingResponse>('', remote, {
             serviceName: serviceName,
             actionName: actionName,
+            ttl: ttl - 1,
             type: 'ping'
         }, (e, result) => {
             if(e)
